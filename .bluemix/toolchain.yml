@@ -26,10 +26,10 @@ demodra-build:
       content: $file(demodra.pipeline.yml)
       env:
         DEMODRA_API_REPO: "demodra-repo"
-#        CF_APP_NAME: "{{deploy.parameters.demodra-app-name}}"
-#        DEV_SPACE_NAME: "{{deploy.parameters.dev-space}}"
-#        DEV_ORG_NAME: "{{deploy.parameters.dev-organization}}"
-#        DEV_REGION_ID: "{{deploy.parameters.dev-region}}"
+        CF_APP_NAME: "{{deploy.parameters.demodra-app-name}}"
+        DEV_SPACE_NAME: "{{deploy.parameters.dev-space}}"
+        DEV_ORG_NAME: "{{deploy.parameters.dev-organization}}"
+        DEV_REGION_ID: "{{deploy.parameters.dev-region}}"
       execute: true
     services: ["demodra-repo"]
   hidden: [form, description]
