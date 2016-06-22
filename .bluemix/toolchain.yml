@@ -1,0 +1,67 @@
+---
+name: "Cloud-native Toolchain for DemoDRA"
+description: "With this cloud-native toolchain, you use a sample to create an web application store that consists of one. The toolchain is preconfigured for continuous delivery, source control, blue-green deployment, functional testing, issue tracking, online editing, and deployment risk analytics.\n\nTo get started, click **Create**."
+version: 0.1
+image: data:image/png;base64,$file(dra-toolchain2.png,base64)
+required:
+ - deploy
+ - github
+
+# Github repos
+demodra-repo:
+  service_id: githubpublic
+  parameters:
+    repo_name: "{{github.parameters.demodra-repo_name}}"
+    repo_url: "{{github.parameters.demodra-repo_url}}"
+    type: clone
+    has_issues: false
+  hidden: [form, description]
+
+# Pipelines
+demodra-build:
+  service_id: pipeline
+  parameters:
+    name: "demodra-{{name}}"
+    configuration:
+      content: $file(demodra.pipeline.yml)
+      env:
+        DEMODRA_API_REPO: "demodra-repo"
+        CF_APP_NAME: "{{deploy.parameters.catalog-app-name}}"
+        DEV_SPACE_NAME: "{{deploy.parameters.dev-space}}"
+        DEV_ORG_NAME: "{{deploy.parameters.dev-organization}}"
+        DEV_REGION_ID: "{{deploy.parameters.dev-region}}"
+      execute: true
+    services: ["catalog-api-repo"]
+  hidden: [form, description]
+
+#Deployment Risk Analytics
+dra:
+  service_id: draservicebroker
+  include: dra.yml
+
+#PagerDuty
+alerting:
+  service_id: pagerduty
+  include: pagerduty.yml
+
+#Web IDE
+webide:
+  service_id: orion
+
+#Deployment
+deploy:
+  schema: deploy.json
+  service-category: pipeline
+  parameters:
+    dev-region: "{{region}}"
+    dev-organization: "{{organization}}"
+    dev-space: dev
+    catalog-app-name: "{{demodra-repo.parameters.repo_name}}"
+
+#Github
+github:
+  schema: github.json
+  service-category: githubpublic
+  parameters:
+    demodra-repo_name: "demodra-{{name}}"
+    demodra-repo_url: https://github.com/uparulekar/DemoDRA
