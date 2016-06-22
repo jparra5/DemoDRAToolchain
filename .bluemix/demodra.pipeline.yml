@@ -9,14 +9,14 @@ stages:
   - type: commit
   jobs:
   - name: Build
-    type: builder
+    type: shell
     COMMAND: |
       #!/bin/bash
       npm install -g npm@3.7.2 ### work around default npm 2.1.1 instability
       npm install
       grunt dev-setup --no-color
       grunt dev-test-cov --no-color -f --gruntfile $GRUNTFILE --base .
-  - name: Unit Tests
+  - name: Upload Results
     type: tester
     extension_id: ibm.devops.services.pipeline.dra_upload_results
     APPLICATION_NAME: Weather
