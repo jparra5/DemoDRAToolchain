@@ -12,7 +12,7 @@
             "type": "string"
         }
     },
-    "required": ["catalog-api-repo_name", "catalog-api-repo_url"],
+    "required": ["demodra-repo_name", "demodra-repo_url"],
     "form": [
       {
         "type": "validator",
