@@ -56,7 +56,7 @@ deploy:
     dev-region: "{{region}}"
     dev-organization: "{{organization}}"
     dev-space: dev
-    catalog-app-name: "{{demodra-repo.parameters.repo_name}}"
+    demodra-app-name: "{{demodra-repo.parameters.repo_name}}"
 
 #Github
 github:
