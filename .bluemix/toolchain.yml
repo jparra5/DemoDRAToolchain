@@ -35,18 +35,18 @@ demodra-repo:
 #  hidden: [form, description]
 
 #Deployment Risk Analytics
-#dra:
-#  service_id: draservicebroker
-#  include: dra.yml
+dra:
+  service_id: draservicebroker
+  include: dra.yml
 
 #PagerDuty
-#alerting:
-#  service_id: pagerduty
-#  include: pagerduty.yml
+alerting:
+  service_id: pagerduty
+  include: pagerduty.yml
 
 #Web IDE
-#webide:
-#  service_id: orion
+webide:
+  service_id: orion
 
 #Deployment
 deploy:
