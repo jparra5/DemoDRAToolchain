@@ -9,7 +9,8 @@ stages:
   - type: commit
   jobs:
   - name: Build
-    type: shell
+    type: builder
+    extension_id: shell
     COMMAND: |
       #!/bin/bash
       npm install -g npm@3.7.2 ### work around default npm 2.1.1 instability
