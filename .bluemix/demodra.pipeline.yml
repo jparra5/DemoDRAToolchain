@@ -12,7 +12,7 @@ stages:
     type: builder
     artifact_dir: ''
     build_type: shell
-     script: |-
+    script: |-
       #!/bin/bash
       npm install -g npm@3.7.2 ### work around default npm 2.1.1 instability
       npm install
