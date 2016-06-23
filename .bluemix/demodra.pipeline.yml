@@ -55,7 +55,7 @@ stages:
   - name: Coverage Gate
     type: tester
     extension_id: ibm.devops.services.pipeline.dra_devops_gate
-    CRITERIA: Coverage Test Checks
+    CRITERIA: Code Coverage Checks
     APPLICATION_NAME: Weather
     ENVIRONMENT: DEV
   - name: Deploy
