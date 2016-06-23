@@ -17,7 +17,6 @@ stages:
       export PATH=/opt/IBM/node-v4.2/bin:$PATH
       npm install
       grunt dev-setup --no-color
-      grunt dev-test-cov --no-color -f
 - name: DEV
   inputs:
   - type: job
@@ -33,7 +32,7 @@ stages:
     value: undefined
     type: text
   jobs:
-  - name: Upload Results
+  - name: UT and Upload Results
     type: tester
     extension_id: ibm.devops.services.pipeline.dra_upload_results
     APPLICATION_NAME: Weather
@@ -45,7 +44,10 @@ stages:
     LOG_FILE: ./mochatest.json
     ENVIRONMENT: DEV
     COMMAND: |
-      #!/bin/bash   
+      #!/bin/bash
+      export PATH=/opt/IBM/node-v4.2/bin:$PATH
+      npm install
+      grunt dev-test-cov --no-color -f   
   - name: UT Gate
     type: tester
     extension_id: ibm.devops.services.pipeline.dra_devops_gate
@@ -73,19 +75,6 @@ stages:
       export APP_URL=http://$(cf app $CF_APP_NAME | grep urls: | awk '{print $2}')
       # View logs
       #cf logs "${CF_APP_NAME}" --recent
-  - name: Functional Tests
-    type: tester
-    script: |-
-      #!/bin/bash
-      export CATALOG_API_TEST_SERVER=$APP_URL
-      GRUNTFILE="tests/Gruntfile.js"
-      if [ -f $GRUNTFILE ]; then
-        npm install -g npm@3.7.2 ### work around default npm 2.1.1 instability
-        npm install
-        grunt dev-fvt --no-color -f --gruntfile $GRUNTFILE --base .
-      else
-        echo "$GRUNTFILE not found."
-      fi
 - name: TEST
   inputs:
   - type: job
@@ -101,6 +90,19 @@ stages:
     value: undefined
     type: text
   jobs:
+  - name: FVT and Upload Results
+    type: tester
+    extension_id: ibm.devops.services.pipeline.dra_upload_results
+    APPLICATION_NAME: Weather
+    FORMAT_SELECT: mocha
+    LIFE_CYCLE_STAGE_SELECT: unittest
+    LOG_FILE: ./saucelabfvt.json
+    ENVIRONMENT: DEV
+    COMMAND: |
+      #!/bin/bash
+      export PATH=/opt/IBM/node-v4.2/bin:$PATH
+      npm install
+      grunt dev-uitest --no-color -f 
   - name: Deploy
     type: deployer
     target:
@@ -112,7 +114,7 @@ stages:
       #!/bin/bash
       # Push app
       export CF_APP_NAME="test-$CF_APP"
-      cf push "${CF_APP_NAME}"
+      cf push "${CF_APP_NAME}" -n ${CF_APP_NAME}
       # View logs
       #cf logs "${CF_APP_NAME}" --recent
 - name: PROD
@@ -137,7 +139,7 @@ stages:
     script: |-
       #!/bin/bash
       if ! cf app $CF_APP; then  
-        cf push $CF_APP
+        cf push $CF_APP -n prod-${CF_APP}
       else
         OLD_CF_APP=${CF_APP}-OLD-$(date +"%s")
         rollback() {
@@ -152,6 +154,6 @@ stages:
         set -e
         trap rollback ERR
         cf rename $CF_APP $OLD_CF_APP
-        cf push $CF_APP
+        cf push $CF_APP -n prod-${CF_APP}
         cf delete $OLD_CF_APP -f
       fi
