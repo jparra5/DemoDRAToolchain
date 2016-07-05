@@ -45,10 +45,6 @@ dra:
   service_id: draservicebroker
   include: dra.yml
 
-#PagerDuty
-alerting:
-  service_id: pagerduty
-  include: pagerduty.yml
 
 #Web IDE
 webide:
