@@ -2,7 +2,7 @@
 name: "Cloud-native Toolchain for DemoDRA"
 description: "With this cloud-native toolchain, you use a sample to create an web application store that consists of one. The toolchain is preconfigured for continuous delivery, source control, blue-green deployment, functional testing, issue tracking, online editing, and deployment risk analytics.\n\nTo get started, click **Create**."
 version: 0.1
-image: data:image/png;base64,$file(dra-toolchain2.png,base64)
+image: data:image/png;base64,$file(dra-toolchain.png,base64)
 required:
  - deploy
  - github
