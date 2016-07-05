@@ -21,7 +21,7 @@ demodra-repo:
 demodra-build:
   service_id: pipeline
   parameters:
-    name: "demodra-{{name}}"
+    name: "{{name}}"
     configuration:
       content: $file(demodra.pipeline.yml)
       env:
@@ -71,5 +71,5 @@ github:
   schema: github.json
   service-category: githubpublic
   parameters:
-    demodra-repo_name: "demodra-{{name}}"
+    demodra-repo_name: "{{name}}"
     demodra-repo_url: https://github.com/uparulekar/DemoDRA
