@@ -11,8 +11,7 @@ required:
 demodra-repo:
   service_id: githubpublic
   parameters:
-    #repo_name: "{{github.parameters.demodra-repo_name}}"
-    repo_name: "test"
+    repo_name: "{{github.parameters.demodra-repo_name}}"
     repo_url: "{{github.parameters.demodra-repo_url}}"
     type: clone
     has_issues: false
