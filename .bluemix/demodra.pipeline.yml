@@ -32,7 +32,7 @@ stages:
     value: undefined
     type: text
   jobs:
-  - name: UT and Upload Results
+  - name: Unit Tests
     type: tester
     extension_id: ibm.devops.services.pipeline.dra_upload_results
     APPLICATION_NAME: Weather
@@ -48,13 +48,13 @@ stages:
       export PATH=/opt/IBM/node-v4.2/bin:$PATH
       npm install
       grunt dev-test-cov --no-color -f   
-  - name: UT Gate
+  - name: Unit Test Gate
     type: tester
     extension_id: ibm.devops.services.pipeline.dra_devops_gate
     CRITERIA: Unit Test Checks
     APPLICATION_NAME: Weather
     ENVIRONMENT: DEV
-  - name: Coverage Gate
+  - name: Code Coverage Gate
     type: tester
     extension_id: ibm.devops.services.pipeline.dra_devops_gate
     CRITERIA: Code Coverage Checks
