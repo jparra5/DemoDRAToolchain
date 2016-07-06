@@ -13,7 +13,6 @@ This cloud-native toolchain will build a simple NodeJs weather application.  The
 * A github.com account will be needed.
 
 
----
 ###Learn more
 
 * [Cloud-native toolchain for microservices](https://www.ibm.com/devops/method/toolchains/microservices_toolchain) on the IBM Bluemix Garage Method site
