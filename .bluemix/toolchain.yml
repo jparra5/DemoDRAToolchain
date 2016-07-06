@@ -1,6 +1,6 @@
 ---
 name: "Simple Weather Application using DRA"
-description: "This cloud-native toolchain will build a simple Weather application.  The toolchain is preconfigured for continuous delivery, source control, blue-green deployment, functional testing, online editing, and deployment risk analytics.\n\nTo get started, click **Create**."
+description: "This cloud-native toolchain will build a simple NodeJs weather application.  The toolchain is configured to build from a github repository, perform unit tests with MochaJS, check code coverage with Istanbul, request DRA decisions, and then deploy to Bluemix.  DRA has been added to the toolchain to analyze the unit test and code coverage results before deploying to Bluemix.\n\nTo get started, click **Create**."
 version: 0.1
 image: data:image/png;base64,$file(dra-toolchain.png,base64)
 required:
