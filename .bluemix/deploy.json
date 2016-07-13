@@ -20,33 +20,9 @@
         "demodra-app-name": {
             "description": "DemoDRA app name",
             "type": "string"
-        },
-        "qa-region": {
-            "description": "The bluemix region",
-            "type": "string"
-        },
-        "qa-organization": {
-            "description": "The bluemix org",
-            "type": "string"
-        },
-        "qa-space": {
-            "description": "The bluemix space",
-            "type": "string"
-        },
-        "prod-region": {
-            "description": "The bluemix region",
-            "type": "string"
-        },
-        "prod-organization": {
-            "description": "The bluemix org",
-            "type": "string"
-        },
-       "prod-space": {
-            "description": "The bluemix space",
-            "type": "string"
         }
     },
-    "required": ["dev-region", "dev-organization", "dev-space", "qa-region", "qa-organization", "qa-space", "prod-region", "prod-organization", "prod-space", "demodra-app-name"],
+    "required": ["dev-region", "dev-organization", "dev-space", "demodra-app-name"],
     "form": [
        {
           "type": "validator",
@@ -94,40 +70,6 @@
                 {
                   "type": "select",
                   "key": "dev-space",
-                  "readonly": false
-                },
-                {
-                  "type": "label",
-                  "title": "Test Stage"
-                },
-                {
-                  "type": "select",
-                  "key": "qa-region"
-                },
-                {
-                  "type": "select",
-                  "key": "qa-organization"
-                },
-                {
-                  "type": "select",
-                  "key": "qa-space",
-                  "readonly": false
-                },
-                {
-                  "type": "label",
-                  "title": "Prod Stage"
-                },
-                {
-                  "type": "select",
-                  "key": "prod-region"
-                },
-                {
-                  "type": "select",
-                  "key": "prod-organization"
-                },
-                {
-                  "type": "select",
-                  "key": "prod-space",
                   "readonly": false
                 }
             ]

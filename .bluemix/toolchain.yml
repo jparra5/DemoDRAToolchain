@@ -30,12 +30,6 @@ demodra-build:
         DEV_SPACE_NAME: "{{deploy.parameters.dev-space}}"
         DEV_ORG_NAME: "{{deploy.parameters.dev-organization}}"
         DEV_REGION_ID: "{{deploy.parameters.dev-region}}"
-        QA_SPACE_NAME: "{{deploy.parameters.qa-space}}"
-        QA_ORG_NAME: "{{deploy.parameters.qa-organization}}"
-        QA_REGION_ID: "{{deploy.parameters.qa-region}}"
-        PROD_SPACE_NAME: "{{deploy.parameters.prod-space}}"
-        PROD_ORG_NAME: "{{deploy.parameters.prod-organization}}"
-        PROD_REGION_ID: "{{deploy.parameters.prod-region}}"
       execute: true
     services: ["demodra-repo"]
   hidden: [form, description]
