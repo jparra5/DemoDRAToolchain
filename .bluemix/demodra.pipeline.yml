@@ -48,16 +48,10 @@ stages:
       export PATH=/opt/IBM/node-v4.2/bin:$PATH
       npm install
       grunt dev-test-cov --no-color -f   
-  - name: Unit Test Gate
+  - name: Unit Test and Code Coverage Gate
     type: tester
     extension_id: ibm.devops.services.pipeline.dra_devops_gate
-    CRITERIA: Unit Test Checks
-    APPLICATION_NAME: Weather
-    ENVIRONMENT: DEV
-  - name: Code Coverage Gate
-    type: tester
-    extension_id: ibm.devops.services.pipeline.dra_devops_gate
-    CRITERIA: Code Coverage Checks
+    CRITERIA: Unit Test and Code Coverage Checks
     APPLICATION_NAME: Weather
     ENVIRONMENT: DEV
   - name: Deploy

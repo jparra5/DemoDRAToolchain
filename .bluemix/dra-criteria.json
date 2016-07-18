@@ -1,7 +1,6 @@
 [
   {
-    "name":"Unit Test Checks",
-    "stage":"unittest",
+    "name":"Unit Test and Code Coverage Checks",
     "rules":[
       {
         "format":"mocha",
@@ -11,13 +10,7 @@
         "criticalTests":[
 
         ]
-      }
-    ]
-  },
-  {
-    "name":"Code Coverage Checks",
-    "stage":"code",
-    "rules":[
+      },
       {
         "format":"istanbul",
         "stage":"code",
